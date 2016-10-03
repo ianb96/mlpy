@@ -20,7 +20,7 @@ df = df[['Adj. Close','HL_PCT','PCT_change','Adj. Volume']]
 forecast_col = 'Adj. Close'
 df.fillna(-99999, inplace=True)
 
-forecast_out = int(math.ceil(0.01*len(df)))
+forecast_out = int(math.ceil(0.01*len(df)))# predict 1% of the data
 
 df['label'] = df[forecast_col].shift(-forecast_out)
 
@@ -50,6 +50,7 @@ forecast_set = clf.predict(X_lately)
 print(forecast_set, acc, forecast_out)
 df["Forecast"] = np.nan
 
+#last_date = df.iloc[-50].name
 last_date = df.iloc[-1].name
 last_unix = last_date.timestamp()
 one_day = 86400
